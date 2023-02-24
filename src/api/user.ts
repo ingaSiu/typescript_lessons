@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { User } from '../types/userApi';
 
 // task: visus any sukeisti realiomis reiksmemis
 
@@ -12,7 +13,7 @@ export const fetchUsers = (): Promise<any> => {
 // pvz interface = user
 // interface = createUser
 // Omit <User, "laukas"> =>
-export const createUser = (user: any): Promise<any> => {
+export const createUser = (user: User): Promise<any> => {
   return axios.post(USERS_API_URL, user).then((response) => response.data);
 };
 
@@ -20,7 +21,7 @@ export const loginUser = async (loggingUser: any): Promise<any> => {
   const users = await fetchUsers();
   return new Promise((resolve, reject) => {
     const { email, password } = loggingUser;
-    const userChecker = (user: any) => user.email === email && user.password === password;
+    const userChecker = (user: User) => user.email === email && user.password === password;
     const existingUser = users.find(userChecker);
     existingUser ? resolve(existingUser) : reject('Invalid credentials');
   });
