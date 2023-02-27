@@ -3,7 +3,7 @@ import { getFullName, hidePassword } from '../../utils/string';
 import { User } from '../../types/userApi';
 
 interface UserCardProps {
-  user: User; // nurodyti tinkama tipa
+  user: User;
 }
 
 const UserCard = ({ user }: UserCardProps) => {

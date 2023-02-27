@@ -7,3 +7,6 @@ export interface User {
   createdAt: string;
   updatedAt: string;
 }
+
+export type NewUser = Omit<User, 'id' | 'createdAt' | 'updatedAt'>;
+export type LoginUser = Omit<NewUser, 'first_name' | 'last_name'>;
