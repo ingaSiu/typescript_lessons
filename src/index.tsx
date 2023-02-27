@@ -5,10 +5,11 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
-
+import Modal from 'react-modal';
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
 const queryClient = new QueryClient();
+Modal.setAppElement('#root');
 
 root.render(
   <React.StrictMode>
