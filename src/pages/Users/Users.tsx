@@ -1,14 +1,14 @@
 import { useUsers } from '../../hooks/user';
 import styled from 'styled-components';
 import UserCard from './UserCard';
-
+import { User } from '../../types/userApi';
 const Users = () => {
   const { data } = useUsers();
   const users = data || [];
 
   return (
     <Container>
-      {users.map((user: any) => (
+      {users.map((user: User) => (
         <UserCard key={user.id} user={user} />
       ))}
     </Container>

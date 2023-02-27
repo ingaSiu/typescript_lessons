@@ -5,7 +5,7 @@ import { User } from '../types/userApi';
 
 const USERS_API_URL = 'https://testapi.io/api/rokasandreikenas/resource/user';
 
-export const fetchUsers = (): Promise<any> => {
+export const fetchUsers = (): Promise<User[]> => {
   return axios.get(USERS_API_URL).then((response) => response.data.data);
 };
 
@@ -13,11 +13,14 @@ export const fetchUsers = (): Promise<any> => {
 // pvz interface = user
 // interface = createUser
 // Omit <User, "laukas"> =>
-export const createUser = (user: User): Promise<any> => {
+
+type CreateUserTypes = Omit<User, 'id' | 'createdAt' | 'updatedAt'>;
+
+export const createUser = (user: CreateUserTypes): Promise<User[]> => {
   return axios.post(USERS_API_URL, user).then((response) => response.data);
 };
 
-export const loginUser = async (loggingUser: any): Promise<any> => {
+export const loginUser = async (loggingUser: User): Promise<User> => {
   const users = await fetchUsers();
   return new Promise((resolve, reject) => {
     const { email, password } = loggingUser;

@@ -1,8 +1,9 @@
 import styled from 'styled-components';
-import { getFullName } from '../../utils/string';
+import { getFullName, hidePassword } from '../../utils/string';
+import { User } from '../../types/userApi';
 
 interface UserCardProps {
-  user: any; // nurodyti tinkama tipa
+  user: User; // nurodyti tinkama tipa
 }
 
 const UserCard = ({ user }: UserCardProps) => {
@@ -10,8 +11,7 @@ const UserCard = ({ user }: UserCardProps) => {
     <Container>
       <Email>{user.email}</Email>
       <p>{getFullName(user.first_name, user.last_name)}</p>
-      {/*password function*/}
-      <p>*****</p>
+      <p>{hidePassword(user.password)}</p>
     </Container>
   );
 };
