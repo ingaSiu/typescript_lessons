@@ -1,27 +1,10 @@
-import { useState } from 'react';
+import ModalComponent from '../../components/Modal/Modal';
 import { useJobs } from '../../hooks/jobs';
-import Modal from 'react-modal';
-// TODO: sukurti job korteles
-const customStyles = {
-  content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
-  },
-};
+
+import JobCard from './JobCard';
+
 const Jobs = () => {
   const { data: jobs, isLoading } = useJobs();
-
-  const [modalIsOpen, setIsOpen] = useState(false);
-  const openModal = () => {
-    setIsOpen(true);
-  };
-  const closeModal = () => {
-    setIsOpen(false);
-  };
 
   if (isLoading) {
     return <div>Jobs are loading</div>;
@@ -32,18 +15,12 @@ const Jobs = () => {
   console.log(jobs);
   return (
     <>
+      <ModalComponent />
       <div>
         {jobs.map((job) => (
-          <p key={job.id}>
-            {job.title} ${job.price}
-          </p>
+          <JobCard key={job.id} job={job} />
         ))}
       </div>
-      <button onClick={openModal}>Open Modal</button>
-      <Modal isOpen={modalIsOpen} onRequestClose={closeModal} style={customStyles} contentLabel="Example Modal">
-        <button onClick={closeModal}>close</button>
-        <div>I am a modal</div>
-      </Modal>
     </>
   );
 };
